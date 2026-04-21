@@ -21,11 +21,13 @@
 
 ### 目标用户
 
-女朋友（iPhone 用户），目前用 Excel 管理囤货，核心痛点是怕过期浪费。
+女朋友（iOS / Android 手机用户），目前用 Excel 管理囤货，核心痛点是怕过期浪费。
 
 ### 交付方式
 
-Expo Go 扫码（无 Apple Developer 账号），中文界面 + 英文代码，温柔少女风视觉。
+Expo Go 扫码（iOS / Android 双端兼容，无 Apple Developer 账号），中文界面 + 英文代码，温柔少女风视觉。
+
+> 2026-04-21 更新：人类明确批准 Phase 1 从 iPhone-only 调整为 iOS + Android Expo Go 双端兼容。该变更不包含 Web、应用商店发布、EAS / development build 或原生工程维护。
 
 ---
 
@@ -486,7 +488,7 @@ stashbox/
 
 ### Phase 1 交付
 
-iPhone 用户通过 Expo Go 扫码使用。开发期间实时预览，无需上架。
+iOS 和 Android 用户通过 Expo Go 扫码使用。开发期间实时预览，无需上架。
 
 ### 后续路径
 

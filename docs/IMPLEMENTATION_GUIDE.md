@@ -3,7 +3,7 @@
 > 文件目标位置：`docs/IMPLEMENTATION_GUIDE.md`  
 > 依据：`docs/superpowers/specs/2026-04-21-stashbox-design.md`  
 > 目标读者：Codex CLI / Claude Code / 熟悉 TypeScript 的 App 新手开发者  
-> Phase 1 目标：2-3 天交付可在 iPhone Expo Go 运行的本地优先 MVP
+> Phase 1 目标：2-3 天交付可在 iOS + Android Expo Go 运行的本地优先 MVP
 
 ---
 
@@ -13,7 +13,8 @@
 
 ### 0.1 固定实现决策
 
-- [补全] **Expo SDK 固定使用 SDK 54 项目**：截至 2026-04-21，Phase 1 交付目标是 iPhone Expo Go 扫码运行，初始化命令不使用 `--template default@sdk-55`。SDK 55 iOS Expo Go 正处于过渡期，物理 iPhone 的 App Store Expo Go 默认仍以 SDK 54 为主。后续升级 SDK 55/56 不属于 Phase 1。
+- [补全] **Expo SDK 固定使用 SDK 54 项目**：截至 2026-04-21，Phase 1 交付目标是 iOS + Android Expo Go 扫码运行，初始化命令不使用 `--template default@sdk-55`。SDK 55 Expo Go 正处于过渡期，Phase 1 仍以 SDK 54 为主。后续升级 SDK 55/56 不属于 Phase 1。
+- [补全] **Phase 1 双端兼容范围**：2026-04-21 人类明确批准 Phase 1 从 iPhone-only 调整为 iOS + Android Expo Go 双端兼容。该变更不包含 Web、应用商店发布、EAS / development build 或原生工程维护。
 - [补全] **NativeWind 使用 v4 配置方式**：使用 `tailwind.config.js`、`global.css`、`babel.config.js`、`metro.config.js`。不使用 NativeWind v5 preview 的 CSS-first 配置。
 - [补全] **日期字段统一存 `YYYY-MM-DD`**：`purchase_date`、`expiry_date`、`open_date`、`computed_due_date` 都存 date-only 字符串，避免 `toISOString()` 在 iOS/时区下产生前后一天偏移。`created_at`、`updated_at` 仍存完整 ISO datetime。
 - [补全] **SQLite 使用 async API + `SQLiteProvider`**：根布局注入数据库，repository 函数显式接收 `SQLiteDatabase`。不用同步 API 执行业务读写，避免阻塞 JS 线程。
@@ -34,7 +35,7 @@
 
 - Node.js 20 LTS 或 22 LTS
 - npm 10+
-- iPhone 安装 Expo Go
+- iOS 和 Android 手机安装 Expo Go
 - VS Code / Cursor / Windsurf 任一编辑器
 
 中国大陆网络环境先执行：
@@ -58,7 +59,7 @@ npx create-expo-app@latest stashbox --yes
 cd stashbox
 ```
 
-不要传 `--template default@sdk-55`。Phase 1 要保证物理 iPhone Expo Go 可扫。
+不要传 `--template default@sdk-55`。Phase 1 要保证物理 iOS 和 Android 设备的 Expo Go 可扫。
 
 清理模板示例代码：
 
@@ -184,7 +185,11 @@ npx tailwindcss init
       }
     },
     "android": {
-      "package": "com.local.stashbox"
+      "package": "com.local.stashbox",
+      "permissions": [
+        "READ_MEDIA_IMAGES",
+        "CAMERA"
+      ]
     },
     "plugins": [
       "expo-router",
@@ -209,6 +214,8 @@ npx tailwindcss init
 ```
 
 [补全] Expo Go 使用的是 Expo Go 自己的原生壳，`Info.plist` 权限文案不会完全按本项目配置展示；这不影响 Phase 1 扫码运行。配置仍保留，方便以后 development build / EAS build 直接复用。
+
+[补全] Android 13+ 读取相册图片需要在 manifest 中声明 `READ_MEDIA_IMAGES`，拍照需要声明 `CAMERA`。`expo-image-picker` 的运行时权限仍然只在用户点击相册或拍照时请求，不在 App 启动时请求。
 
 ### 1.8 NativeWind / Tailwind 配置
 
@@ -2609,7 +2616,7 @@ export function ToastHost() {
 | `expo` | App 框架 | 是 | 否 | create-expo-app 安装 |
 | `expo-router` | 文件路由 | 是 | 否 | `expo install` |
 | `expo-sqlite` | 本地数据库 | 是 | 否 | `SQLiteProvider` |
-| `expo-image-picker` | 相机/相册 | 是 | 否 | 权限在调用时请求 |
+| `expo-image-picker` | 相机/相册 | 是 | 否 | 权限在调用时请求，Android manifest 声明 `READ_MEDIA_IMAGES` / `CAMERA` |
 | `expo-file-system` | 本地图片文件 | 是 | 否 | 使用新 API |
 | `expo-linear-gradient` | 渐变 UI | 是 | 否 | 统计卡片/背景/按钮 |
 | `@react-native-community/datetimepicker` | 日期选择 | 是 | 否 | `expo install` |
@@ -2646,7 +2653,7 @@ export function ToastHost() {
 - 验收标准：
   - `npm install` 成功
   - `npx expo start --clear` 能启动
-  - iPhone Expo Go 能看到默认空页面
+  - iOS 和 Android Expo Go 能看到默认空页面
 - 复杂度：简单
 
 ### Task 02 — 配置 TypeScript、Expo、NativeWind
@@ -2861,7 +2868,7 @@ export function ToastHost() {
 - 验收标准：
   - `npm test` 通过
   - `npx tsc --noEmit` 通过
-  - `npx expo start --clear` iPhone Expo Go 可扫码
+  - `npx expo start --clear` iOS 和 Android Expo Go 可扫码
   - 添加 10 个物品流程顺畅
   - 重启 App 数据仍存在
   - 删除 item 后图片不再占用目录
@@ -2969,7 +2976,7 @@ describe('computeDueDate', () => {
 
 ### 13.5 手动 QA 清单
 
-在 iPhone Expo Go 上执行：
+在 iOS 和 Android Expo Go 上执行：
 
 1. 首次启动 App，首页为空状态。
 2. 添加仅名称 item，保存成功。
@@ -2988,6 +2995,9 @@ describe('computeDueDate', () => {
 15. 进入归档列表能看到归档 item。
 16. 重启 App，数据仍存在。
 17. 删除带图片 item，本地图片不再显示。
+18. Android 首次点击相册时出现权限请求，授权后图片可保存并展示。
+19. Android 首次点击拍照时出现权限请求，授权后图片可保存并展示。
+20. Android 键盘弹出时，添加/编辑表单仍可滚动和输入。
 
 ---
 
@@ -2995,7 +3005,7 @@ describe('computeDueDate', () => {
 
 ### 14.1 Expo SDK 版本风险
 
-[补全] Phase 1 使用 SDK 54 是为了物理 iPhone Expo Go 交付稳定。不要在 Phase 1 主动升级 SDK 55/56。升级会触发 Expo Go 客户端版本、NativeWind/Reanimated、Router API 变化风险。
+[补全] Phase 1 使用 SDK 54 是为了物理 iOS 和 Android Expo Go 交付稳定。不要在 Phase 1 主动升级 SDK 55/56。升级会触发 Expo Go 客户端版本、NativeWind/Reanimated、Router API 变化风险。
 
 ### 14.2 iOS 权限配置
 
@@ -3003,6 +3013,12 @@ describe('computeDueDate', () => {
 - 不要在 App 启动时请求相机或相册权限。
 - `app.json` 已写 `NSPhotoLibraryUsageDescription` 和 `NSCameraUsageDescription`。
 - Expo Go 中权限弹窗文案由 Expo Go 壳决定；这不阻塞 Phase 1。
+
+### 14.2a Android 权限配置
+
+- `app.json` 的 `android.permissions` 必须声明 `READ_MEDIA_IMAGES` 和 `CAMERA`。
+- Android 运行时权限仍由 `expo-image-picker` 在用户点击相册/拍照时请求。
+- 不创建 `android/` 原生目录，不引入 EAS / development build 作为 Phase 1 要求。
 
 ### 14.3 SQLite 性能注意事项
 
@@ -3058,7 +3074,7 @@ npx expo start --clear
 
 Expo Go 检查：
 
-1. iPhone 与开发机在同一网络；网络不稳定时 Expo CLI 选择 Tunnel。
-2. iPhone 扫码打开。
-3. 完成第 13.5 节手动 QA。
+1. iOS / Android 设备与开发机在同一网络；网络不稳定时 Expo CLI 选择 Tunnel。
+2. iOS / Android 设备扫码打开。
+3. 完成第 13.5 节手动 QA，Android 端额外确认首次相册/拍照权限弹窗、授权后图片可保存展示、键盘弹出时表单可继续滚动输入。
 4. 最终录入 10 个物品，确认比 Excel 更顺手。

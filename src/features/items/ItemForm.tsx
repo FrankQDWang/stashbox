@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import {
   Image,
   KeyboardAvoidingView,
@@ -58,7 +58,7 @@ export function ItemForm({ categories, initialValues, submitLabel, onSubmit }: I
     }
   }, [setValue, status, watch]);
 
-  const addLibraryImages = async () => {
+  const addLibraryImages = useCallback(async () => {
     try {
       const picked = await pickImagesFromLibrary();
       const remainingSlots = Math.max(0, 3 - images.length);
@@ -71,9 +71,9 @@ export function ItemForm({ categories, initialValues, submitLabel, onSubmit }: I
     } catch (error) {
       showToast('error', error instanceof Error ? error.message : '选择照片失败');
     }
-  };
+  }, [images, setValue, showToast]);
 
-  const addCameraImage = async () => {
+  const addCameraImage = useCallback(async () => {
     try {
       if (images.length >= 3) {
         showToast('info', '最多添加 3 张照片');
@@ -91,18 +91,21 @@ export function ItemForm({ categories, initialValues, submitLabel, onSubmit }: I
     } catch (error) {
       showToast('error', error instanceof Error ? error.message : '拍照失败');
     }
-  };
+  }, [images, setValue, showToast]);
 
-  const removeImageAt = (index: number) => {
-    setValue(
-      'images',
-      images.filter((_, imageIndex) => imageIndex !== index),
-      { shouldDirty: true, shouldValidate: true },
-    );
-  };
+  const removeImageAt = useCallback(
+    (index: number) => {
+      setValue(
+        'images',
+        images.filter((_, imageIndex) => imageIndex !== index),
+        { shouldDirty: true, shouldValidate: true },
+      );
+    },
+    [images, setValue],
+  );
 
   return (
-    <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : undefined} className="flex-1">
+    <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} className="flex-1">
       <ScrollView
         className="flex-1"
         contentContainerStyle={{ padding: 18, paddingBottom: 120 }}

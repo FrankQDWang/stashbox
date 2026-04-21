@@ -8,7 +8,7 @@ For Claude Code users: symlink or copy this file to `CLAUDE.md` at the repo root
 
 ## 1. Mission
 
-Build **StashBox Phase 1 MVP**: a local-first iPhone app, distributed through Expo Go, for managing small personal items (skincare, makeup, perfume, jewelry, accessories, stocked goods).
+Build **StashBox Phase 1 MVP**: a local-first iOS and Android app, distributed through Expo Go, for managing small personal items (skincare, makeup, perfume, jewelry, accessories, stocked goods).
 
 Target user is non-technical. The app must feel warmer, faster, and easier than Excel. Chinese UI text. English code, filenames, identifiers, and comments.
 
@@ -42,7 +42,7 @@ Do not add these in Phase 1:
 - Tags, usage history, data export, backup, import
 - AI suggestions, ecommerce links, subscriptions
 - Dark mode
-- Android-specific or web-specific scope expansion
+- Web-specific scope expansion. Android support is limited to Phase 1 Expo Go compatibility.
 
 Only build the seven locked pages defined in the design document.
 
@@ -116,7 +116,7 @@ Never claim Expo Go manual QA passed unless a human or attached device actually 
 
 Phase 1 is done only when all are true:
 
-- The app starts through `npx expo start` and opens in iPhone Expo Go.
+- The app starts through `npx expo start` and opens in iOS and Android Expo Go.
 - The seven locked pages exist and are navigable.
 - Default categories seed once and do not duplicate.
 - Add, edit, detail, archive, and delete flows work locally.

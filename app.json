@@ -17,6 +17,10 @@
     },
     "android": {
       "package": "com.local.stashbox",
+      "permissions": [
+        "READ_MEDIA_IMAGES",
+        "CAMERA"
+      ],
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE",
         "foregroundImage": "./assets/images/android-icon-foreground.png",
