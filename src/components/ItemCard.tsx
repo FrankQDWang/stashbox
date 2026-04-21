@@ -1,4 +1,4 @@
-import { Image, Text, View } from 'react-native';
+import { Image, Platform, Text, View } from 'react-native';
 
 import { getExpiryColor, getExpiryLabel, getExpiryLevel, getExpiryText } from '@/domain/expiry';
 import { ProgressBar } from '@/components/ProgressBar';
@@ -31,11 +31,15 @@ export function ItemCard({ item, onPress }: ItemCardProps) {
         style={{
           borderLeftWidth: 5,
           borderLeftColor: expiryColor,
-          shadowColor: '#f48fb1',
-          shadowOpacity: 0.12,
-          shadowRadius: 12,
-          shadowOffset: { width: 0, height: 6 },
-          elevation: 2,
+          ...(Platform.OS === 'web'
+            ? { boxShadow: '0 6px 12px rgba(244, 143, 177, 0.12)' }
+            : {
+                shadowColor: '#f48fb1',
+                shadowOpacity: 0.12,
+                shadowRadius: 12,
+                shadowOffset: { width: 0, height: 6 },
+                elevation: 2,
+              }),
         }}
       >
         <View className="flex-row">

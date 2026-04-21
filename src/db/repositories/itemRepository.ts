@@ -1,5 +1,6 @@
 import type { SQLiteDatabase } from 'expo-sqlite';
 
+import { runWriteTransaction } from '@/db/transaction';
 import { computeDueDate } from '@/domain/expiry';
 import type { InventorySortMode } from '@/domain/sorting';
 import { addDays, todayDateOnly } from '@/utils/date';
@@ -214,7 +215,7 @@ export async function createItem(
   const now = new Date().toISOString();
   const computedDueDate = computeDueDate(input);
 
-  await db.withExclusiveTransactionAsync(async (txn) => {
+  await runWriteTransaction(db, async (txn) => {
     await txn.runAsync(
       `
       INSERT INTO items (
@@ -282,7 +283,7 @@ export async function updateItem(
   const computedDueDate = computeDueDate(merged);
   const now = new Date().toISOString();
 
-  await db.withExclusiveTransactionAsync(async (txn) => {
+  await runWriteTransaction(db, async (txn) => {
     await txn.runAsync(
       `
       UPDATE items SET
@@ -351,7 +352,7 @@ export async function deleteItem(
     id,
   );
 
-  await db.withExclusiveTransactionAsync(async (txn) => {
+  await runWriteTransaction(db, async (txn) => {
     await txn.runAsync('DELETE FROM items WHERE id = ?', id);
   });
 
@@ -479,7 +480,7 @@ export async function replaceItemImages(
   const now = new Date().toISOString();
   let insertedImages: ItemImage[] = [];
 
-  await db.withExclusiveTransactionAsync(async (txn) => {
+  await runWriteTransaction(db, async (txn) => {
     insertedImages = await replaceImagesOnConnection(txn, itemId, imageLocalUris, now);
   });
 

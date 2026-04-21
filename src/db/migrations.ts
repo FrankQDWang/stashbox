@@ -2,6 +2,7 @@ import type { SQLiteDatabase } from 'expo-sqlite';
 
 import { DATABASE_VERSION } from '@/db/database';
 import { seedDefaultCategories } from '@/db/seed';
+import { runWriteTransaction } from '@/db/transaction';
 
 export async function migrateDbIfNeeded(db: SQLiteDatabase): Promise<void> {
   await db.execAsync(`
@@ -13,7 +14,7 @@ export async function migrateDbIfNeeded(db: SQLiteDatabase): Promise<void> {
   const currentVersion = result?.user_version ?? 0;
 
   if (currentVersion < 1) {
-    await db.withExclusiveTransactionAsync(async (txn) => {
+    await runWriteTransaction(db, async (txn) => {
       await txn.execAsync(`
         CREATE TABLE IF NOT EXISTS categories (
           id TEXT PRIMARY KEY,

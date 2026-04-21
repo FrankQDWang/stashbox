@@ -1,5 +1,7 @@
 import type { SQLiteDatabase } from 'expo-sqlite';
 
+import { runWriteTransaction } from '@/db/transaction';
+
 const DEFAULT_CATEGORIES = [
   { id: 'cat_skincare', name: '护肤', icon: '🧴', sortOrder: 0 },
   { id: 'cat_makeup', name: '彩妆', icon: '💄', sortOrder: 1 },
@@ -17,7 +19,7 @@ const DEFAULT_CATEGORIES = [
 export async function seedDefaultCategories(db: SQLiteDatabase): Promise<void> {
   const now = new Date().toISOString();
 
-  await db.withExclusiveTransactionAsync(async (txn) => {
+  await runWriteTransaction(db, async (txn) => {
     for (const category of DEFAULT_CATEGORIES) {
       await txn.runAsync(
         `

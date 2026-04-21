@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { Animated, Text } from 'react-native';
+import { Animated, Platform, Text } from 'react-native';
 
 import { useAppStore } from '@/store/useAppStore';
 
@@ -18,12 +18,12 @@ export function ToastHost() {
       Animated.timing(translateY, {
         toValue: 0,
         duration: 180,
-        useNativeDriver: true,
+        useNativeDriver: Platform.OS !== 'web',
       }),
       Animated.timing(opacity, {
         toValue: 1,
         duration: 180,
-        useNativeDriver: true,
+        useNativeDriver: Platform.OS !== 'web',
       }),
     ]).start();
 
@@ -32,12 +32,12 @@ export function ToastHost() {
         Animated.timing(translateY, {
           toValue: 24,
           duration: 160,
-          useNativeDriver: true,
+          useNativeDriver: Platform.OS !== 'web',
         }),
         Animated.timing(opacity, {
           toValue: 0,
           duration: 160,
-          useNativeDriver: true,
+          useNativeDriver: Platform.OS !== 'web',
         }),
       ]).start(hideToast);
     }, 2200);
@@ -54,9 +54,9 @@ export function ToastHost() {
 
   return (
     <Animated.View
-      pointerEvents="none"
       style={{
         position: 'absolute',
+        pointerEvents: 'none',
         left: 24,
         right: 24,
         bottom: 46,

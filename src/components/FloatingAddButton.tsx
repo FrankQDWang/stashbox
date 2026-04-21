@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { Animated, Pressable, Text } from 'react-native';
+import { Animated, Platform, Pressable, Text } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 
 interface FloatingAddButtonProps {
@@ -15,12 +15,12 @@ export function FloatingAddButton({ onPress }: FloatingAddButtonProps) {
         Animated.timing(scale, {
           toValue: 1.05,
           duration: 1200,
-          useNativeDriver: true,
+          useNativeDriver: Platform.OS !== 'web',
         }),
         Animated.timing(scale, {
           toValue: 1,
           duration: 1200,
-          useNativeDriver: true,
+          useNativeDriver: Platform.OS !== 'web',
         }),
       ]),
     );
@@ -36,11 +36,15 @@ export function FloatingAddButton({ onPress }: FloatingAddButtonProps) {
         right: 22,
         bottom: 98,
         transform: [{ scale }],
-        shadowColor: '#f48fb1',
-        shadowOpacity: 0.3,
-        shadowRadius: 14,
-        shadowOffset: { width: 0, height: 8 },
-        elevation: 8,
+        ...(Platform.OS === 'web'
+          ? { boxShadow: '0 8px 14px rgba(244, 143, 177, 0.3)' }
+          : {
+              shadowColor: '#f48fb1',
+              shadowOpacity: 0.3,
+              shadowRadius: 14,
+              shadowOffset: { width: 0, height: 8 },
+              elevation: 8,
+            }),
       }}
     >
       <Pressable
