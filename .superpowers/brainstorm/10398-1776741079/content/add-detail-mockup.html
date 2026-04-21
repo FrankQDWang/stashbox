@@ -1,0 +1,271 @@
+<h2>StashBox - 添加物品 & 物品详情</h2>
+<p class="subtitle">极简录入 + 快捷操作 · Phase 1 核心交互</p>
+
+<div class="split" style="gap:24px; align-items:flex-start;">
+
+  <!-- 添加物品页 -->
+  <div class="mockup" style="max-width:380px;">
+    <div class="mockup-header" style="background:linear-gradient(135deg, #fce4ec, #f3e5f5); color:#c2185b;">添加物品 - 分段折叠表单</div>
+    <div class="mockup-body" style="background:linear-gradient(180deg, #fff5f7, #fefefe); padding:16px;">
+
+      <!-- 顶部导航 -->
+      <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:20px;">
+        <div style="font-size:14px; color:#d4748a; cursor:pointer;">← 返回</div>
+        <div style="font-size:16px; font-weight:600; color:#333;">添加物品</div>
+        <div style="font-size:14px; color:#ce93d8; font-weight:600; cursor:pointer;">保存</div>
+      </div>
+
+      <!-- 图片区域 -->
+      <div style="display:flex; gap:10px; margin-bottom:20px;">
+        <div style="width:80px; height:80px; border-radius:16px; background:linear-gradient(135deg, #fce4ec, #f3e5f5); border:2px dashed #e1bee7; display:flex; flex-direction:column; align-items:center; justify-content:center; cursor:pointer;">
+          <div style="font-size:24px; color:#ce93d8;">📷</div>
+          <div style="font-size:10px; color:#ce93d8; margin-top:2px;">拍照</div>
+        </div>
+        <div style="width:80px; height:80px; border-radius:16px; background:linear-gradient(135deg, #fce4ec, #f3e5f5); border:2px dashed #e1bee7; display:flex; flex-direction:column; align-items:center; justify-content:center; cursor:pointer;">
+          <div style="font-size:24px; color:#ce93d8;">🖼️</div>
+          <div style="font-size:10px; color:#ce93d8; margin-top:2px;">相册</div>
+        </div>
+      </div>
+
+      <!-- Section 1: 基本信息（默认展开） -->
+      <div style="background:white; border-radius:16px; padding:16px; margin-bottom:12px; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+        <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:14px;">
+          <div style="font-size:14px; font-weight:600; color:#d4748a;">🎀 基本信息</div>
+          <div style="font-size:12px; color:#ccc;">▼</div>
+        </div>
+
+        <!-- 物品名称（唯一必填） -->
+        <div style="margin-bottom:12px;">
+          <div style="font-size:11px; color:#999; margin-bottom:4px;">物品名称 <span style="color:#ef5350;">*</span></div>
+          <div style="background:#fafafa; border:1px solid #f0e0e8; border-radius:12px; padding:10px 14px; font-size:13px; color:#bbb;">例如：雅诗兰黛小棕瓶精华</div>
+        </div>
+
+        <!-- 分类选择 -->
+        <div style="margin-bottom:12px;">
+          <div style="font-size:11px; color:#999; margin-bottom:6px;">分类</div>
+          <div style="display:flex; flex-wrap:wrap; gap:6px;">
+            <span style="background:linear-gradient(135deg, #f48fb1, #ce93d8); color:white; padding:5px 12px; border-radius:20px; font-size:11px;">🧴 护肤</span>
+            <span style="background:#fce4ec; color:#d4748a; padding:5px 12px; border-radius:20px; font-size:11px;">💄 彩妆</span>
+            <span style="background:#fce4ec; color:#d4748a; padding:5px 12px; border-radius:20px; font-size:11px;">🌸 香水</span>
+            <span style="background:#fce4ec; color:#d4748a; padding:5px 12px; border-radius:20px; font-size:11px;">💇‍♀️ 美发</span>
+            <span style="background:#fce4ec; color:#d4748a; padding:5px 12px; border-radius:20px; font-size:11px;">🛁 身体</span>
+            <span style="background:#fce4ec; color:#d4748a; padding:5px 12px; border-radius:20px; font-size:11px;">💍 首饰</span>
+            <span style="background:#fce4ec; color:#d4748a; padding:5px 12px; border-radius:20px; font-size:11px;">🎀 饰品</span>
+            <span style="background:#fce4ec; color:#d4748a; padding:5px 12px; border-radius:20px; font-size:11px;">更多...</span>
+          </div>
+        </div>
+
+        <!-- 状态选择 -->
+        <div>
+          <div style="font-size:11px; color:#999; margin-bottom:6px;">使用状态</div>
+          <div style="display:flex; gap:8px;">
+            <span style="background:linear-gradient(135deg, #e8f5e9, #c8e6c9); color:#2e7d32; padding:6px 14px; border-radius:20px; font-size:12px; font-weight:500;">未开封</span>
+            <span style="background:#f5f5f5; color:#999; padding:6px 14px; border-radius:20px; font-size:12px;">已开封</span>
+            <span style="background:#f5f5f5; color:#999; padding:6px 14px; border-radius:20px; font-size:12px;">闲置</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 2: 日期与保质期（默认折叠） -->
+      <div style="background:white; border-radius:16px; padding:16px; margin-bottom:12px; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+        <div style="display:flex; align-items:center; justify-content:space-between;">
+          <div style="font-size:14px; font-weight:600; color:#c4956a;">📅 日期与保质期</div>
+          <div style="font-size:12px; color:#ccc;">▶</div>
+        </div>
+        <!-- 展开后内容 -->
+        <div style="margin-top:14px; padding-top:12px; border-top:1px solid #f5f0f0;">
+          <div style="margin-bottom:12px;">
+            <div style="font-size:11px; color:#999; margin-bottom:4px;">到期日期</div>
+            <div style="background:#fafafa; border:1px solid #f0e0e8; border-radius:12px; padding:10px 14px; font-size:13px; color:#bbb;">选择日期</div>
+          </div>
+          <!-- 快捷选项 -->
+          <div style="margin-bottom:12px;">
+            <div style="font-size:11px; color:#999; margin-bottom:6px;">快捷设置</div>
+            <div style="display:flex; gap:6px; flex-wrap:wrap;">
+              <span style="background:#fff3e0; color:#e65100; padding:5px 12px; border-radius:16px; font-size:11px; cursor:pointer;">未开封3年</span>
+              <span style="background:#fff3e0; color:#e65100; padding:5px 12px; border-radius:16px; font-size:11px; cursor:pointer;">开封后12个月</span>
+              <span style="background:#fff3e0; color:#e65100; padding:5px 12px; border-radius:16px; font-size:11px; cursor:pointer;">开封后6个月</span>
+              <span style="background:#fff3e0; color:#e65100; padding:5px 12px; border-radius:16px; font-size:11px; cursor:pointer;">开封后3个月</span>
+            </div>
+          </div>
+          <div>
+            <div style="font-size:11px; color:#999; margin-bottom:4px;">开封日期</div>
+            <div style="background:#fafafa; border:1px solid #f0e0e8; border-radius:12px; padding:10px 14px; font-size:13px; color:#bbb;">选择日期（切换为已开封时自动填充今天）</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 3: 更多信息（默认折叠） -->
+      <div style="background:white; border-radius:16px; padding:16px; margin-bottom:12px; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+        <div style="display:flex; align-items:center; justify-content:space-between;">
+          <div style="font-size:14px; font-weight:600; color:#9b7ab8;">✨ 更多信息</div>
+          <div style="font-size:12px; color:#ccc;">▶</div>
+        </div>
+        <div style="font-size:11px; color:#ccc; margin-top:6px;">品牌、色号、价格、存放位置、备注...</div>
+      </div>
+
+      <!-- 保存按钮 -->
+      <div style="margin-top:16px;">
+        <div style="background:linear-gradient(135deg, #f48fb1, #ce93d8); color:white; text-align:center; padding:14px; border-radius:24px; font-size:15px; font-weight:600; box-shadow:0 4px 16px rgba(244,143,177,0.3); cursor:pointer;">
+          保存物品
+        </div>
+        <div style="text-align:center; margin-top:8px; font-size:12px; color:#ccc;">
+          只需填写名称即可保存，其他信息随时补充
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 物品详情页 -->
+  <div class="mockup" style="max-width:380px;">
+    <div class="mockup-header" style="background:linear-gradient(135deg, #fce4ec, #f3e5f5); color:#c2185b;">物品详情 - 快捷操作</div>
+    <div class="mockup-body" style="background:linear-gradient(180deg, #fff5f7, #fefefe); padding:16px;">
+
+      <!-- 顶部导航 -->
+      <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:16px;">
+        <div style="font-size:14px; color:#d4748a; cursor:pointer;">← 返回</div>
+        <div style="font-size:14px; color:#ce93d8; font-weight:600; cursor:pointer;">编辑</div>
+      </div>
+
+      <!-- 大图 -->
+      <div style="width:100%; height:200px; border-radius:16px; background:linear-gradient(135deg, #fce4ec, #f3e5f5); display:flex; align-items:center; justify-content:center; margin-bottom:16px;">
+        <div style="font-size:64px;">🧴</div>
+      </div>
+
+      <!-- 名称和状态 -->
+      <div style="margin-bottom:16px;">
+        <div style="font-size:20px; font-weight:700; color:#333; margin-bottom:4px;">雅诗兰黛小棕瓶精华</div>
+        <div style="display:flex; gap:6px; align-items:center; flex-wrap:wrap;">
+          <span style="background:#fce4ec; color:#d4748a; padding:3px 10px; border-radius:12px; font-size:11px;">🧴 护肤</span>
+          <span style="background:#e8f5e9; color:#2e7d32; padding:3px 10px; border-radius:12px; font-size:11px;">已开封</span>
+          <span style="background:#ffebee; color:#d32f2f; padding:3px 10px; border-radius:12px; font-size:11px;">已过期</span>
+        </div>
+      </div>
+
+      <!-- 剩余量 -->
+      <div style="background:white; border-radius:16px; padding:14px; margin-bottom:12px; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+          <div style="font-size:13px; color:#666;">剩余量</div>
+          <div style="font-size:15px; font-weight:700; color:#ef5350;">35%</div>
+        </div>
+        <div style="height:8px; background:#f5f5f5; border-radius:4px; overflow:hidden;">
+          <div style="width:35%; height:100%; background:linear-gradient(to right, #ef5350, #ff8a80); border-radius:4px;"></div>
+        </div>
+      </div>
+
+      <!-- 到期信息 -->
+      <div style="background:white; border-radius:16px; padding:14px; margin-bottom:12px; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+        <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+          <div style="font-size:12px; color:#999;">到期日期</div>
+          <div style="font-size:13px; color:#d32f2f; font-weight:500;">2026-03-15（已过期 37 天）</div>
+        </div>
+        <div style="display:flex; justify-content:space-between;">
+          <div style="font-size:12px; color:#999;">开封日期</div>
+          <div style="font-size:13px; color:#666;">2025-09-20</div>
+        </div>
+      </div>
+
+      <!-- 快捷操作 -->
+      <div style="margin-bottom:16px;">
+        <div style="font-size:13px; font-weight:600; color:#d4748a; margin-bottom:10px;">快捷操作</div>
+        <div style="display:flex; flex-wrap:wrap; gap:8px;">
+          <div style="background:linear-gradient(135deg, #e8f5e9, #c8e6c9); color:#2e7d32; padding:10px 16px; border-radius:16px; font-size:12px; font-weight:500; cursor:pointer; text-align:center;">
+            📦 标记开封
+          </div>
+          <div style="background:linear-gradient(135deg, #fce4ec, #f8bbd0); color:#c2185b; padding:10px 16px; border-radius:16px; font-size:12px; font-weight:500; cursor:pointer; text-align:center;">
+            ✅ 标记用完
+          </div>
+          <div style="background:linear-gradient(135deg, #f3e5f5, #e1bee7); color:#7b1fa2; padding:10px 16px; border-radius:16px; font-size:12px; font-weight:500; cursor:pointer; text-align:center;">
+            📊 调整剩余量
+          </div>
+          <div style="background:linear-gradient(135deg, #fff3e0, #ffe0b2); color:#e65100; padding:10px 16px; border-radius:16px; font-size:12px; font-weight:500; cursor:pointer; text-align:center;">
+            📁 归档
+          </div>
+        </div>
+      </div>
+
+      <!-- 调整剩余量弹窗 -->
+      <div style="background:white; border-radius:16px; padding:16px; box-shadow:0 2px 8px rgba(0,0,0,0.04); border:2px solid #e1bee7;">
+        <div style="font-size:13px; font-weight:600; color:#9b7ab8; margin-bottom:10px;">调整剩余量</div>
+        <div style="display:flex; gap:8px; margin-bottom:10px;">
+          <span style="background:#f3e5f5; color:#7b1fa2; padding:8px 16px; border-radius:16px; font-size:13px; font-weight:500; cursor:pointer;">75%</span>
+          <span style="background:linear-gradient(135deg, #ce93d8, #ba68c8); color:white; padding:8px 16px; border-radius:16px; font-size:13px; font-weight:500; cursor:pointer;">50%</span>
+          <span style="background:#f3e5f5; color:#7b1fa2; padding:8px 16px; border-radius:16px; font-size:13px; font-weight:500; cursor:pointer;">25%</span>
+        </div>
+        <div style="display:flex; gap:8px; align-items:center;">
+          <div style="flex:1; background:#fafafa; border:1px solid #e1bee7; border-radius:12px; padding:8px 12px; font-size:13px; color:#666;">自定义: 35</div>
+          <div style="font-size:13px; color:#999;">%</div>
+          <div style="background:linear-gradient(135deg, #f48fb1, #ce93d8); color:white; padding:8px 16px; border-radius:16px; font-size:12px; font-weight:500; cursor:pointer;">确定</div>
+        </div>
+      </div>
+
+      <!-- 保存成功后的操作 -->
+      <div style="margin-top:20px; padding-top:16px; border-top:2px dashed #f0e0e8;">
+        <div style="font-size:11px; color:#ccc; text-align:center; margin-bottom:8px;">保存成功后显示</div>
+        <div style="display:flex; gap:10px;">
+          <div style="flex:1; background:linear-gradient(135deg, #f48fb1, #ce93d8); color:white; text-align:center; padding:12px; border-radius:20px; font-size:13px; font-weight:600; cursor:pointer;">
+            继续添加
+          </div>
+          <div style="flex:1; background:#f5f5f5; color:#999; text-align:center; padding:12px; border-radius:20px; font-size:13px; cursor:pointer;">
+            查看详情
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<div class="section" style="margin-top:32px;">
+  <h3>交互规范</h3>
+  <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(280px, 1fr)); gap:16px; margin-top:12px;">
+
+    <div style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:14px; padding:16px;">
+      <div style="font-weight:600; color:#d4748a; margin-bottom:8px;">添加页表单规则</div>
+      <div style="font-size:12px; color:#aaa; line-height:1.8;">
+        唯一必填：物品名称<br>
+        默认展开：基本信息<br>
+        默认折叠：日期与保质期、更多信息<br>
+        分类选择：Chip 单选，默认不选<br>
+        状态默认：未开封<br>
+        图片：可选，支持拍照 + 相册
+      </div>
+    </div>
+
+    <div style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:14px; padding:16px;">
+      <div style="font-weight:600; color:#d4748a; margin-bottom:8px;">到期快捷选项逻辑</div>
+      <div style="font-size:12px; color:#aaa; line-height:1.8;">
+        「未开封3年」→ expiry_date = 今天 + 3年<br>
+        「开封后12个月」→ after_open_months = 12<br>
+        「开封后6个月」→ after_open_months = 6<br>
+        「开封后3个月」→ after_open_months = 3<br>
+        切换到「已开封」→ 自动填充 open_date = 今天
+      </div>
+    </div>
+
+    <div style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:14px; padding:16px;">
+      <div style="font-weight:600; color:#d4748a; margin-bottom:8px;">详情页快捷操作</div>
+      <div style="font-size:12px; color:#aaa; line-height:1.8;">
+        标记开封 → status=opened, open_date=今天<br>
+        标记用完 → status=used_up, remaining=0<br>
+        调整剩余量 → 快捷 75/50/25% 或自定义<br>
+        归档 → is_archived=1, 从主列表消失<br>
+        每个操作都有确认反馈（轻量 toast）
+      </div>
+    </div>
+
+    <div style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:14px; padding:16px;">
+      <div style="font-weight:600; color:#d4748a; margin-bottom:8px;">保存成功流程</div>
+      <div style="font-size:12px; color:#aaa; line-height:1.8;">
+        保存 → 显示成功 toast<br>
+        底部出现两个按钮：<br>
+        「继续添加」→ 清空表单，留在添加页<br>
+        「查看详情」→ 跳转到刚创建的物品详情<br>
+        支持批量录入场景
+      </div>
+    </div>
+
+  </div>
+</div>

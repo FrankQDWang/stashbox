@@ -1,0 +1,129 @@
+<h2>StashBox - App 信息架构 & 页面流程</h2>
+<p class="subtitle">Phase 1 的 4 个 Tab + 核心页面流转</p>
+
+<div class="section">
+  <h3>底部 Tab 导航（4 个）</h3>
+  <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:12px;">
+    <div style="flex:1; min-width:200px; background:rgba(255,182,193,0.12); border:1px solid rgba(255,182,193,0.3); border-radius:16px; padding:20px; text-align:center;">
+      <div style="font-size:28px; margin-bottom:8px;">🏠</div>
+      <div style="font-weight:600; color:#d4748a; margin-bottom:4px;">首页</div>
+      <div style="font-size:13px; color:#888;">今天该关注什么</div>
+      <div style="font-size:12px; color:#aaa; margin-top:8px; text-align:left;">
+        - 统计卡片（快过期/已过期/总数）<br>
+        - 风险物品列表<br>
+        - 快速添加浮动按钮<br>
+        - 空状态友好引导
+      </div>
+    </div>
+    <div style="flex:1; min-width:200px; background:rgba(186,156,214,0.12); border:1px solid rgba(186,156,214,0.3); border-radius:16px; padding:20px; text-align:center;">
+      <div style="font-size:28px; margin-bottom:8px;">📦</div>
+      <div style="font-weight:600; color:#9b7ab8; margin-bottom:4px;">库存</div>
+      <div style="font-size:13px; color:#888;">所有物品完整列表</div>
+      <div style="font-size:12px; color:#aaa; margin-top:8px; text-align:left;">
+        - 搜索栏<br>
+        - 分类筛选 Chips<br>
+        - 排序切换（到期/录入时间）<br>
+        - 物品卡片列表<br>
+        - 归档入口
+      </div>
+    </div>
+    <div style="flex:1; min-width:200px; background:rgba(255,218,185,0.12); border:1px solid rgba(255,218,185,0.3); border-radius:16px; padding:20px; text-align:center;">
+      <div style="font-size:28px; margin-bottom:8px;">⏰</div>
+      <div style="font-weight:600; color:#c4956a; margin-bottom:4px;">提醒</div>
+      <div style="font-size:13px; color:#888;">Phase 1 简化版</div>
+      <div style="font-size:12px; color:#aaa; margin-top:8px; text-align:left;">
+        - 已过期物品列表<br>
+        - 7天内到期<br>
+        - 30天内到期<br>
+        <span style="color:#d4748a;">（无推送通知，仅展示）</span>
+      </div>
+    </div>
+    <div style="flex:1; min-width:200px; background:rgba(176,210,176,0.12); border:1px solid rgba(176,210,176,0.3); border-radius:16px; padding:20px; text-align:center;">
+      <div style="font-size:28px; margin-bottom:8px;">👤</div>
+      <div style="font-weight:600; color:#7ba87b; margin-bottom:4px;">我的</div>
+      <div style="font-size:13px; color:#888;">设置与管理</div>
+      <div style="font-size:12px; color:#aaa; margin-top:8px; text-align:left;">
+        - 分类管理<br>
+        - 归档物品查看<br>
+        - 关于 App<br>
+        <span style="color:#999;">（Phase 2: 导出/备份）</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section" style="margin-top:32px;">
+  <h3>页面流转图</h3>
+  <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.1); border-radius:16px; padding:24px; font-family:monospace; font-size:13px; line-height:2.2;">
+    <div style="text-align:center; margin-bottom:16px;">
+      <span style="background:rgba(255,182,193,0.2); padding:6px 16px; border-radius:20px; color:#d4748a;">App 启动</span>
+    </div>
+    <div style="text-align:center; margin-bottom:20px; color:#666;">↓</div>
+    <div style="display:flex; justify-content:center; gap:40px; flex-wrap:wrap;">
+      <div style="text-align:center;">
+        <div style="background:rgba(255,182,193,0.15); padding:8px 16px; border-radius:12px; color:#d4748a; font-weight:600;">🏠 首页</div>
+        <div style="color:#666; margin:8px 0;">↓ 点击物品卡片</div>
+        <div style="background:rgba(255,218,185,0.15); padding:8px 16px; border-radius:12px; color:#c4956a;">📋 物品详情</div>
+        <div style="color:#666; margin:8px 0;">↓ 点击编辑</div>
+        <div style="background:rgba(186,156,214,0.15); padding:8px 16px; border-radius:12px; color:#9b7ab8;">✏️ 编辑物品</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="background:rgba(255,182,193,0.15); padding:8px 16px; border-radius:12px; color:#d4748a; font-weight:600;">➕ 浮动按钮</div>
+        <div style="color:#666; margin:8px 0;">↓</div>
+        <div style="background:rgba(176,210,176,0.15); padding:8px 16px; border-radius:12px; color:#7ba87b;">📝 添加物品</div>
+        <div style="color:#666; margin:8px 0;">↓ 保存成功</div>
+        <div style="background:rgba(255,218,185,0.15); padding:8px 16px; border-radius:12px; color:#c4956a;">📋 物品详情</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="background:rgba(186,156,214,0.15); padding:8px 16px; border-radius:12px; color:#9b7ab8; font-weight:600;">📦 库存</div>
+        <div style="color:#666; margin:8px 0;">↓ 搜索/筛选/点击</div>
+        <div style="background:rgba(255,218,185,0.15); padding:8px 16px; border-radius:12px; color:#c4956a;">📋 物品详情</div>
+        <div style="color:#666; margin:8px 0;">↓ 快捷操作</div>
+        <div style="display:flex; gap:8px; justify-content:center; flex-wrap:wrap;">
+          <span style="background:rgba(255,182,193,0.15); padding:4px 10px; border-radius:8px; font-size:11px; color:#d4748a;">标记开封</span>
+          <span style="background:rgba(255,182,193,0.15); padding:4px 10px; border-radius:8px; font-size:11px; color:#d4748a;">标记用完</span>
+          <span style="background:rgba(255,182,193,0.15); padding:4px 10px; border-radius:8px; font-size:11px; color:#d4748a;">调整剩余量</span>
+          <span style="background:rgba(255,182,193,0.15); padding:4px 10px; border-radius:8px; font-size:11px; color:#d4748a;">归档</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section" style="margin-top:32px;">
+  <h3>Phase 1 完整页面清单</h3>
+  <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(220px, 1fr)); gap:12px; margin-top:12px;">
+    <div style="background:rgba(255,182,193,0.08); border:1px solid rgba(255,182,193,0.2); border-radius:12px; padding:14px;">
+      <div style="font-weight:600; color:#d4748a; font-size:14px;">Tab: 首页</div>
+      <div style="font-size:12px; color:#999; margin-top:4px;">app/(tabs)/index.tsx</div>
+    </div>
+    <div style="background:rgba(186,156,214,0.08); border:1px solid rgba(186,156,214,0.2); border-radius:12px; padding:14px;">
+      <div style="font-weight:600; color:#9b7ab8; font-size:14px;">Tab: 库存</div>
+      <div style="font-size:12px; color:#999; margin-top:4px;">app/(tabs)/inventory.tsx</div>
+    </div>
+    <div style="background:rgba(255,218,185,0.08); border:1px solid rgba(255,218,185,0.2); border-radius:12px; padding:14px;">
+      <div style="font-weight:600; color:#c4956a; font-size:14px;">Tab: 提醒</div>
+      <div style="font-size:12px; color:#999; margin-top:4px;">app/(tabs)/reminders.tsx</div>
+    </div>
+    <div style="background:rgba(176,210,176,0.08); border:1px solid rgba(176,210,176,0.2); border-radius:12px; padding:14px;">
+      <div style="font-weight:600; color:#7ba87b; font-size:14px;">Tab: 我的</div>
+      <div style="font-size:12px; color:#999; margin-top:4px;">app/(tabs)/me.tsx</div>
+    </div>
+    <div style="background:rgba(255,218,185,0.08); border:1px solid rgba(255,218,185,0.2); border-radius:12px; padding:14px;">
+      <div style="font-weight:600; color:#c4956a; font-size:14px;">添加物品</div>
+      <div style="font-size:12px; color:#999; margin-top:4px;">app/item/new.tsx</div>
+    </div>
+    <div style="background:rgba(186,156,214,0.08); border:1px solid rgba(186,156,214,0.2); border-radius:12px; padding:14px;">
+      <div style="font-weight:600; color:#9b7ab8; font-size:14px;">编辑物品</div>
+      <div style="font-size:12px; color:#999; margin-top:4px;">app/item/edit/[id].tsx</div>
+    </div>
+    <div style="background:rgba(255,182,193,0.08); border:1px solid rgba(255,182,193,0.2); border-radius:12px; padding:14px;">
+      <div style="font-weight:600; color:#d4748a; font-size:14px;">物品详情</div>
+      <div style="font-size:12px; color:#999; margin-top:4px;">app/item/[id].tsx</div>
+    </div>
+    <div style="background:rgba(176,210,176,0.08); border:1px solid rgba(176,210,176,0.2); border-radius:12px; padding:14px;">
+      <div style="font-weight:600; color:#7ba87b; font-size:14px;">归档列表</div>
+      <div style="font-size:12px; color:#999; margin-top:4px;">app/archived.tsx</div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,54 @@
+{
+  "expo": {
+    "name": "StashBox",
+    "slug": "stashbox",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/icon.png",
+    "scheme": "stashbox",
+    "userInterfaceStyle": "light",
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.local.stashbox",
+      "infoPlist": {
+        "NSPhotoLibraryUsageDescription": "StashBox 需要访问相册，用于为物品添加照片。",
+        "NSCameraUsageDescription": "StashBox 需要使用相机，用于拍摄物品照片。"
+      }
+    },
+    "android": {
+      "package": "com.local.stashbox",
+      "adaptiveIcon": {
+        "backgroundColor": "#E6F4FE",
+        "foregroundImage": "./assets/images/android-icon-foreground.png",
+        "backgroundImage": "./assets/images/android-icon-background.png",
+        "monochromeImage": "./assets/images/android-icon-monochrome.png"
+      }
+    },
+    "splash": {
+      "image": "./assets/images/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#fff5f7"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "web": {
+      "bundler": "metro"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-sqlite",
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "StashBox 需要访问相册，用于为物品添加照片。",
+          "cameraPermission": "StashBox 需要使用相机，用于拍摄物品照片。",
+          "microphonePermission": false
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}
